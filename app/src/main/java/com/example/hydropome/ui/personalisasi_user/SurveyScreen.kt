@@ -1,5 +1,6 @@
 package com.example.hydropome.ui.personalisasi_user
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -39,6 +40,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -91,8 +93,26 @@ fun SurveyScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF2D5F5D))
     ) {
+        // Background dengan lengkungan
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val path = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(size.width, 0f)
+                lineTo(size.width, size.height * 0.3f)
+                quadraticBezierTo(
+                    size.width / 2f,
+                    size.height * 0.35f,
+                    0f,
+                    size.height * 0.3f
+                )
+                close()
+            }
+            drawPath(
+                path = path,
+                color = Color(0xFF2D5F5D)
+            )
+        }
         Column(
             modifier = Modifier.fillMaxSize()
         ) {

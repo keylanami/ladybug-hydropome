@@ -21,66 +21,80 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.hydropome.ui.dashboard.model.flashsaleItem
 import com.example.hydropome.ui.theme.ColorTheme
 
 @Composable
-fun FSCard(FlashsaleItem: flashsaleItem ){
+fun FSCard(item: flashsaleItem) {
 
     Card(
         modifier = Modifier
-            .padding(16.dp)
-            .width(20.dp)
-            .background(Color.White)
-    ){
-        Column() {
+            .padding(4.dp)
+            .width(160.dp)
+            .height(240.dp),
+        shape = RoundedCornerShape(20.dp)
+    ) {
+
+        Column(
+            modifier = Modifier
+                .background(Color.White)
+                .padding(12.dp)
+        ) {
+
             Image(
-                painter = painterResource(id = FlashsaleItem.imageRes),
-                contentDescription = FlashsaleItem.namaItem,
+                painter = painterResource(id = item.imageRes),
+                contentDescription = item.namaItem,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(120.dp)
-                    .clip(RoundedCornerShape(16.dp)),
+                    .clip(RoundedCornerShape(14.dp)),
                 contentScale = ContentScale.Crop
             )
 
-            Spacer(
-                modifier = Modifier.height(6.dp)
-            )
+            Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = FlashsaleItem.cateItem,
-                style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Thin)
+                text = item.cateItem,
+                style = MaterialTheme.typography.bodySmall.copy(
+                    fontWeight = FontWeight.Thin
+                ),
+                color = Color.Gray
             )
 
-            Spacer(
-                modifier = Modifier.height(6.dp)
-            )
-
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = FlashsaleItem.namaItem,
-                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold)
+                text = item.namaItem,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontWeight = FontWeight.SemiBold
+                ),
+                maxLines = 2
             )
+
+            Spacer(modifier = Modifier.height(6.dp))
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Spacer(modifier = Modifier.height(8.dp))
-
                 Text(
-                    text = FlashsaleItem.harga,
-                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+                    text = item.harga,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontWeight = FontWeight.Bold
+                    ),
                     color = ColorTheme.GreenDark
                 )
 
                 Spacer(modifier = Modifier.width(6.dp))
 
                 Text(
-                    text = FlashsaleItem.disc,
-                    style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold),
-                    color = ColorTheme.BlackDark
+                    text = item.disc,
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        fontWeight = FontWeight.Normal,
+                        textDecoration = TextDecoration.LineThrough
+                    ),
+                    color = Color.Gray
                 )
             }
         }

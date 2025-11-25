@@ -26,10 +26,10 @@ fun FlashSale(){
     ) {
         Text(
             text = "Starter Kit Flash Sale 🔥",
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold, fontFamily = PlusJakarta)
+            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold, fontFamily = PlusJakarta)
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(1.dp),

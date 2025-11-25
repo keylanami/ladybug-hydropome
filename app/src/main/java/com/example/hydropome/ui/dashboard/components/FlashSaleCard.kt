@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -32,15 +33,16 @@ fun FSCard(item: flashsaleItem) {
     Card(
         modifier = Modifier
             .padding(4.dp)
-            .width(160.dp)
-            .height(240.dp),
+            .width(200.dp)
+            .height(264.dp),
         shape = RoundedCornerShape(20.dp)
     ) {
 
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .background(Color.White)
-                .padding(12.dp)
+                .padding(24.dp)
         ) {
 
             Image(
@@ -48,8 +50,8 @@ fun FSCard(item: flashsaleItem) {
                 contentDescription = item.namaItem,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
-                    .clip(RoundedCornerShape(14.dp)),
+                    .height(144.dp)
+                    .clip(RoundedCornerShape(8.dp)),
                 contentScale = ContentScale.Crop
             )
 

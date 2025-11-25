@@ -6,7 +6,7 @@ object ColorTheme {
     // -------------------------
     // PRIMARY GREEN
     // -------------------------
-    val GreenLight = Color(0xFFE5F5F2)
+    val GreenLight = Color(0xFF179778)
     val GreenLightHover = Color(0xFFDCEFEB)
     val GreenLightActive = Color(0xFFB7DFD5)
 
@@ -70,4 +70,6 @@ object ColorTheme {
     val BlackDarkActive = Color(0xFF080808)
 
     val BlackDarker = Color(0xFF060606)
+
+    val GreyNormal = Color(0xFF98A0AA)
 }

@@ -1,4 +1,4 @@
-package com.yourapp.ui.theme
+package com.example.hydropome.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -6,8 +6,20 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.example.hydropome.ui.theme.Typography
-
+import com.example.hydropome.ui.theme.ColorTheme.BgDark
+import com.example.hydropome.ui.theme.ColorTheme.BgLight
+import com.example.hydropome.ui.theme.ColorTheme.BgNormal
+import com.example.hydropome.ui.theme.ColorTheme.BlackDark
+import com.example.hydropome.ui.theme.ColorTheme.BlackLight
+import com.example.hydropome.ui.theme.ColorTheme.BlackNormal
+import com.example.hydropome.ui.theme.ColorTheme.GreenDark
+import com.example.hydropome.ui.theme.ColorTheme.GreenDarker
+import com.example.hydropome.ui.theme.ColorTheme.GreenLight
+import com.example.hydropome.ui.theme.ColorTheme.GreenNormal
+import com.example.hydropome.ui.theme.ColorTheme.OrangeDark
+import com.example.hydropome.ui.theme.ColorTheme.OrangeDarker
+import com.example.hydropome.ui.theme.ColorTheme.OrangeLight
+import com.example.hydropome.ui.theme.ColorTheme.OrangeNormal
 
 
 // ----------------------------------------------------

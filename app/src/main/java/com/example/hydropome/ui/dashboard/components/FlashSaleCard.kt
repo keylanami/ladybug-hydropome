@@ -42,7 +42,7 @@ fun FSCard(item: flashsaleItem) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(24.dp)
+                .padding(16.dp)
         ) {
 
             Image(

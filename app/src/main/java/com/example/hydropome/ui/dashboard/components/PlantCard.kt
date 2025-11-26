@@ -14,12 +14,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults // 1. Pastikan import ini ada
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,14 +32,22 @@ import com.example.hydropome.ui.theme.ColorTheme
 import com.example.hydropome.ui.theme.PlusJakarta
 
 @Composable
-
 fun PlantCard(plantItem: PlantItem){
-    Card {
+    Card (
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        ),
+        shape = RoundedCornerShape(16.dp),
+        modifier = Modifier
+            .width(240.dp)
+            .height(220.dp),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 4.dp
+        ),
+    ) {
 
         Column(
             modifier = Modifier
-                .width(240.dp)
-                .height(220.dp)
                 .padding(8.dp)
         ) {
             Image(
@@ -101,8 +111,6 @@ fun PlantCard(plantItem: PlantItem){
 
                 )
             }
-
         }
     }
-
 }

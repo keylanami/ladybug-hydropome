@@ -2,6 +2,7 @@ package com.example.hydropome.ui.dashboard.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,51 +32,59 @@ import com.example.hydropome.ui.theme.PlusJakarta
 @Preview(showBackground = true)
 fun GreetingSection() {
 
-    Row(
+
+    Box(
         modifier = Modifier
             .fillMaxWidth()
+            .height(200.dp)
             .clip(RoundedCornerShape(bottomStart = 40.dp, bottomEnd = 40.dp))
             .background(GreenNormal)
-            .padding(horizontal = 20.dp, vertical = 100.dp),
-        verticalAlignment = Alignment.CenterVertically
     ) {
 
-        Column(
+        Row(
             modifier = Modifier
-                .weight(1f)
+                .fillMaxWidth()
+                .height(140.dp)
+                .padding(horizontal = 20.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Text(
-                text = "Halo Mellafesa! 👋🏻",
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontFamily = PlusJakarta,
-                    fontSize = 13.sp
-                ),
-                color = Color.White.copy(alpha = 0.8f)
-            )
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
 
-            Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = "Halo Mellafesa! 👋🏻",
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = PlusJakarta,
+                        fontSize = 13.sp
+                    ),
+                    color = Color.White.copy(alpha = 0.8f)
+                )
 
+                Spacer(modifier = Modifier.height(6.dp))
 
-            Text(
-                text = "Berkebun Apa Hari Ini?",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontFamily = Manrope,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp
-                ),
-                color = Color.White
+                Text(
+                    text = "Berkebun Apa Hari Ini?",
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        fontFamily = Manrope,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 22.sp
+                    ),
+                    color = Color.White
+                )
+            }
+
+            Spacer(modifier = Modifier.width(12.dp))
+
+            Image(
+                painter = painterResource(id = R.drawable.memoji_girls),
+                contentDescription = "User Memoji",
+                modifier = Modifier
+                    .height(48.dp)
+                    .width(48.dp)
             )
         }
-
-        Spacer(modifier = Modifier.width(12.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.memoji_girls),
-            contentDescription = "User Memoji",
-            modifier = Modifier
-                .height(48.dp)
-                .width(48.dp)
-        )
     }
 }

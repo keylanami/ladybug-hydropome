@@ -1,6 +1,7 @@
 package com.example.hydropome.ui.dashboard
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,7 +23,6 @@ import com.example.hydropome.ui.dashboard.components.SearchBar
 
 @Composable
 @Preview
-
 fun dashboardScreen(){
     Column(
         modifier = Modifier
@@ -30,22 +30,28 @@ fun dashboardScreen(){
             .background(Color(0xFFF7F7F7))
             .verticalScroll(rememberScrollState())
     ) {
+
         GreetingSection()
-        Spacer(modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .offset(y = -50.dp))
+        Column(
+            modifier = Modifier
+                .offset(y = (-72).dp)
+        ) {
 
-        ProgressCard()
-        Spacer(modifier = Modifier.height(10.dp)
-        )
+            Box(modifier = Modifier.padding(horizontal = 20.dp)) {
+                ProgressCard()
+            }
 
-        SearchBar()
-        Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
-        RecommendationSection()
-        Spacer(modifier = Modifier.height(24.dp))
 
-        FlashSale()
-        Spacer(modifier = Modifier.height(50.dp))
+            SearchBar()
+            Spacer(modifier = Modifier.height(20.dp))
+
+            RecommendationSection()
+            Spacer(modifier = Modifier.height(24.dp))
+
+            FlashSale()
+            Spacer(modifier = Modifier.height(50.dp))
+        }
     }
 }

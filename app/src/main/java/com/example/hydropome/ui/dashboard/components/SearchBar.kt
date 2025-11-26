@@ -29,9 +29,9 @@ fun SearchBar() {
         contentAlignment = Alignment.CenterStart,
         modifier = Modifier
             .padding(horizontal = 20.dp)
-            .background(Color(0xFFD8D8D8), RoundedCornerShape(12.dp))
+            .background(Color(0xFFD0D0D1), RoundedCornerShape(12.dp))
             .fillMaxWidth()
-            .height(64.dp)
+            .height(48.dp)
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 16.dp),

@@ -1,6 +1,5 @@
 package com.example.hydropome.ui.dashboard.components
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,37 +23,43 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.hydropome.R
-
+import com.example.hydropome.ui.theme.PlusJakarta
 
 @Composable
 @Preview
-
 fun ProgressCard(){
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier
             .padding(horizontal = 20.dp)
             .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        )
+
     ) {
         Row(
             modifier = Modifier
-                .padding(20.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 20.dp, top = 20.dp, bottom = 20.dp)
+            ) {
                 Text(
                     "Belum Ada Progress Tanaman Hari Ini . . .",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold, fontFamily = PlusJakarta)
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
 
                 Text(
                     "Ayo pilih tanaman pertama kamu dan mulai sekarang!",
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium.copy(fontFamily = PlusJakarta),
                     color = Color.Gray
                 )
             }
@@ -62,7 +67,10 @@ fun ProgressCard(){
             Image(
                 painter = painterResource(id = R.drawable.daun),
                 contentDescription = null,
-                modifier = Modifier.size(70.dp)
+                modifier = Modifier
+                    .size(100.dp)
+                    .padding(end = 20.dp)
+                    .align(Alignment.Bottom)
             )
         }
     }

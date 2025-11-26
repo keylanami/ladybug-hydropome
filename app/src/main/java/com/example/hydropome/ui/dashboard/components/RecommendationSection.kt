@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.hydropome.ui.theme.PlusJakarta
 
 @Composable
 @Preview
@@ -35,7 +36,7 @@ fun RecommendationSection(){
         ) {
             Text(
                 text = "Rekomendasi Untukmu",
-                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold, fontFamily = PlusJakarta)
             )
 
             Text(
@@ -58,7 +59,8 @@ fun RecommendationSection(){
             modifier = Modifier.height(480.dp)
         ) {
             items(plantDummy) { plant ->
-                PlantCard(plant)            }
+                PlantCard(plant)
+            }
         }
 
     }

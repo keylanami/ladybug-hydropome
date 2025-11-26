@@ -20,16 +20,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.hydropome.R
+import com.example.hydropome.ui.theme.PlusJakarta
 
 @Composable
-@Preview
+@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true)
 fun SearchBar() {
     Box(
+        contentAlignment = Alignment.CenterStart,
         modifier = Modifier
             .padding(horizontal = 20.dp)
-            .background(Color.White, RoundedCornerShape(20.dp))
+            .background(Color(0xFFD8D8D8), RoundedCornerShape(12.dp))
             .fillMaxWidth()
-            .height(48.dp)
+            .height(64.dp)
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 16.dp),
@@ -37,17 +39,19 @@ fun SearchBar() {
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.search_normal),
-                contentDescription = null,
-                tint = Color.Gray
+                contentDescription = "Search Icon",
+                tint = Color(0xFF98A0AA),
+                modifier = Modifier.width(24.dp).height(24.dp)
             )
 
-            Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
             Text(
                 text = "Cari tanaman...",
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color.Gray
+                style = MaterialTheme.typography.bodyLarge.copy(fontFamily = PlusJakarta),
+                color = Color(0xFF98A0AA)
             )
         }
     }
 }
+

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.example.hydropome.ui.theme.PlusJakarta
 
 @Composable
-@Preview
+@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true)
 fun FlashSale(){
 
     Column(

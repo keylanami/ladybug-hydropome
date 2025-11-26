@@ -22,10 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.hydropome.R
 import com.example.hydropome.ui.dashboard.model.PlantItem
 import com.example.hydropome.ui.theme.ColorTheme
+import com.example.hydropome.ui.theme.PlusJakarta
 
 @Composable
 
@@ -34,15 +36,17 @@ fun PlantCard(plantItem: PlantItem){
 
         Column(
             modifier = Modifier
-                .padding(20.dp)
+                .width(240.dp)
+                .height(220.dp)
+                .padding(8.dp)
         ) {
             Image(
                 painter = painterResource(id = plantItem.imageRes),
                 contentDescription = plantItem.name,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
-                    .clip(RoundedCornerShape(16.dp)),
+                    .height(140.dp)
+                    .clip(RoundedCornerShape(8.dp)),
                 contentScale = ContentScale.Crop
             )
 
@@ -52,7 +56,7 @@ fun PlantCard(plantItem: PlantItem){
 
             Text(
                 text = plantItem.name,
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleMedium.copy(fontFamily = PlusJakarta, fontWeight = FontWeight.Bold),
                 color = ColorTheme.BlackNormal
             )
 
@@ -72,9 +76,11 @@ fun PlantCard(plantItem: PlantItem){
                         .background(plantItem.difficultyColor)
                 )
 
+                Spacer(modifier = Modifier.width(3.dp))
+
                 Text(
                     text = plantItem.difficulty,
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.bodySmall.copy(fontFamily = PlusJakarta, fontWeight = FontWeight.SemiBold),
                     color = plantItem.difficultyColor
                 )
 
@@ -89,9 +95,9 @@ fun PlantCard(plantItem: PlantItem){
                 Spacer(modifier = Modifier.width(6.dp))
 
                 Text(
-                    text = plantItem.name,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = plantItem.difficultyColor
+                    text = plantItem.duration,
+                    style = MaterialTheme.typography.bodySmall.copy(fontFamily = PlusJakarta, fontWeight = FontWeight.SemiBold),
+                    color = ColorTheme.GreyNormal
 
                 )
             }

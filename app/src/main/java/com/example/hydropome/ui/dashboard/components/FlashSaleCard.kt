@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.hydropome.ui.dashboard.model.flashsaleItem
 import com.example.hydropome.ui.theme.ColorTheme
+import com.example.hydropome.ui.theme.PlusJakarta
 
 @Composable
 fun FSCard(item: flashsaleItem) {
@@ -33,9 +35,13 @@ fun FSCard(item: flashsaleItem) {
     Card(
         modifier = Modifier
             .padding(4.dp)
-            .width(200.dp)
+            .width(190.dp)
             .height(264.dp),
-        shape = RoundedCornerShape(20.dp)
+        shape = RoundedCornerShape(20.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        )
     ) {
 
         Column(
@@ -51,16 +57,18 @@ fun FSCard(item: flashsaleItem) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(144.dp)
-                    .clip(RoundedCornerShape(8.dp)),
+                    .clip(RoundedCornerShape(8.dp))
+                    .padding(top = 10.dp),
                 contentScale = ContentScale.Crop
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = item.cateItem,
                 style = MaterialTheme.typography.bodySmall.copy(
-                    fontWeight = FontWeight.Thin
+                    fontWeight = FontWeight.Thin,
+                    fontFamily = PlusJakarta
                 ),
                 color = Color.Gray
             )
@@ -70,7 +78,8 @@ fun FSCard(item: flashsaleItem) {
             Text(
                 text = item.namaItem,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    fontFamily = PlusJakarta
                 ),
                 maxLines = 2
             )
@@ -83,7 +92,8 @@ fun FSCard(item: flashsaleItem) {
                 Text(
                     text = item.harga,
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = PlusJakarta
                     ),
                     color = ColorTheme.GreenDark
                 )
@@ -94,7 +104,8 @@ fun FSCard(item: flashsaleItem) {
                     text = item.disc,
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.Normal,
-                        textDecoration = TextDecoration.LineThrough
+                        textDecoration = TextDecoration.LineThrough,
+                        fontFamily = PlusJakarta
                     ),
                     color = Color.Gray
                 )

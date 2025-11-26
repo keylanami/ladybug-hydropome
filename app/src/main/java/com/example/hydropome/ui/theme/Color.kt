@@ -72,4 +72,5 @@ object ColorTheme {
     val BlackDarker = Color(0xFF060606)
 
     val GreyNormal = Color(0xFF98A0AA)
+    val Greylightt = Color(0x00D8D8D8)
 }

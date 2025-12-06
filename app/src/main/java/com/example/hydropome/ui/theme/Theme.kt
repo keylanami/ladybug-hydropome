@@ -1,4 +1,4 @@
-package com.yourapp.ui.theme
+package com.example.hydropome.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -6,7 +6,6 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.example.hydropome.ui.theme.Typography
 
 
 
@@ -58,7 +57,7 @@ private val DarkColorScheme = darkColorScheme(
 
 
 @Composable
-fun YourAppTheme(
+fun HydropomeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

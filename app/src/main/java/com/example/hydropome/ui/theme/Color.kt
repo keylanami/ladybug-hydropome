@@ -1,4 +1,4 @@
-package com.yourapp.ui.theme
+package com.example.hydropome.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

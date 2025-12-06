@@ -72,3 +72,5 @@ val BlackDarkHover = Color(0xFF0A0A0A)
 val BlackDarkActive = Color(0xFF080808)
 
 val BlackDarker = Color(0xFF060606)
+
+val green = Color(0xFF179778)

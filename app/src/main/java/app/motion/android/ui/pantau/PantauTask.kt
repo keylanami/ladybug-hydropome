@@ -152,7 +152,7 @@ fun TaskHeaderImage() {
             .height(200.dp)
     ) {
         Image(
-            painter = ColorPainter(Color.LightGray), // GANTI DENGAN GAMBAR ASLI
+            painter = painterResource(R.drawable.selada_hidroponik),
             contentDescription = "Tanaman Header",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -173,7 +173,6 @@ fun PlantInfoSection() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            // Tag Mudah
             Box(
                 modifier = Modifier
                     .size(10.dp)

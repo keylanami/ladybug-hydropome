@@ -2,6 +2,7 @@ package app.motion.android.ui.dashboard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,8 +37,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -46,79 +49,75 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+import app.motion.android.R
 
 val PrimaryGreen = Color(0xFF4E9F80)
 val TextBlack = Color(0xFF1E1E1E)
 val TextGray = Color(0xFF888888)
-val LightGrayBg = Color(0xFFF5F5F5)
-
 
 @Composable
 fun PlantDetailScreen() {
+    val uriHandler = LocalUriHandler.current
+    val youtubeUrl = "https://youtu.be/zoGaKrSK6HE?si=aTz_Cd1gq3d1kvcT"
+
     Scaffold(
         bottomBar = { BottomFloatingButton() },
         containerColor = Color.White
     ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .verticalScroll(rememberScrollState())
-        ) {
-            PlantHeaderImage()
+        Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
 
-            Column(modifier = Modifier.padding(horizontal = 24.dp)) {
-                PlantTitleSection()
-                Spacer(modifier = Modifier.height(20.dp))
-                DescriptionSection()
-                Spacer(modifier = Modifier.height(20.dp))
-                ToolsSection()
-                Spacer(modifier = Modifier.height(20.dp))
-                TutorialSection()
-                // Extra space for bottom bar visibility inside scroll
-                Spacer(modifier = Modifier.height(80.dp))
+             Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+            ) {
+                PlantHeaderImage()
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .fillMaxWidth()
+                ) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    PlantTitleSection()
+                    Spacer(modifier = Modifier.height(20.dp))
+                    DescriptionSection()
+                    Spacer(modifier = Modifier.height(20.dp))
+                    ToolsSection()
+                    Spacer(modifier = Modifier.height(20.dp))
+                    TutorialSection(onTutorialClick = { uriHandler.openUri(youtubeUrl) })
+                    Spacer(modifier = Modifier.height(100.dp))
+                }
+            }
+
+            IconButton(
+                onClick = { /* Handle Back */ },
+                modifier = Modifier
+                    .padding(top = 48.dp, start = 24.dp)
+                    .size(40.dp)
+                    .background(Color.White, CircleShape)
+                    .align(Alignment.TopStart) // Dikunci di kiri atas Box
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = TextBlack
+                )
             }
         }
     }
 }
 
-// --- C O M P O N E N T S ---
-
 @Composable
 fun PlantHeaderImage() {
-    Box(
+     Image(
+        painter = painterResource(R.drawable.selada_hidroponik),
+        contentDescription = "Selada Hidroponik",
+        contentScale = ContentScale.Crop,
         modifier = Modifier
             .fillMaxWidth()
             .height(300.dp)
-    ) {
-        // --- BAGIAN YANG DIPERBAIKI ---
-        // Ganti painterResource yang error dengan ColorPainter (Kotak Abu-abu)
-        // Nanti kalau sudah ada foto asli, ganti jadi: painterResource(id = R.drawable.foto_kamu)
-        Image(
-            painter = ColorPainter(Color.LightGray),
-            contentDescription = "Selada Hidroponik",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxSize()
-                .clip(BottomArcShape())
-        )
-
-        // Tombol Back
-        IconButton(
-            onClick = { /* Handle Back */ },
-            modifier = Modifier
-                .padding(top = 48.dp, start = 24.dp)
-                .size(40.dp)
-                .background(Color.White, CircleShape)
-        ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back",
-                tint = TextBlack
-            )
-        }
-    }
+            .clip(BottomArcShape()) // Efek lengkungan yang kamu buat
+    )
 }
 
 @Composable
@@ -132,8 +131,6 @@ fun PlantTitleSection() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            // Tag Mudah
-            // Lingkaran manual
             Box(
                 modifier = Modifier
                     .size(12.dp)
@@ -149,9 +146,8 @@ fun PlantTitleSection() {
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Tag Waktu
             Icon(
-                imageVector = Icons.Default.DateRange, // Icon Kalender (pengganti jam)
+                imageVector = Icons.Default.DateRange,
                 contentDescription = null,
                 tint = TextGray,
                 modifier = Modifier.size(16.dp)
@@ -177,7 +173,7 @@ fun DescriptionSection() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Selada merupakan salah satu tanaman paling populer dalam budidaya hidroponik karena pertumbuhannya yang cepat dan perawatannya yang mudah. Tanaman ini cocok untuk pemula karena tidak memerlukan banyak nutrisi khusus atau perawatan intensif. Selada tumbuh subur di sistem hidroponik seperti NFT (Nutrient Film Technique) dan dapat dipanen dalam waktu 3-5 minggu setelah tanam.",
+            text = "Selada merupakan salah satu tanaman paling populer dalam budidaya hidroponik karena pertumbuhannya yang cepat dan perawatannya yang mudah. Tanaman ini cocok untuk pemula karena tidak memerlukan banyak nutrisi khusus atau perawatan intensif.",
             fontSize = 14.sp,
             color = TextGray,
             lineHeight = 20.sp
@@ -191,12 +187,9 @@ fun ToolsSection() {
         "Wadah atau Bak Tanam" to "Tempat air nutrisi dan tanaman diletakkan.",
         "Net Pot / Pot kecil berlubang" to "Untuk menahan tanaman dan media tanam.",
         "Spons/Rockwool" to "Media tanam tempat benih tumbuh.",
-        "Pompa Air (untuk NFT)" to "Mengalirkan nutrisi secara sirkulasi.",
-        "Penutup atau Styrofoam (untuk rakit apung)" to "Untuk menopang netpot.",
         "Alat ukur pH dan TDS" to "Untuk memantau kualitas larutan nutrisi.",
         "Benih selada" to "",
-        "Nutrisi AB Mix" to "",
-        "Air Bersih" to ""
+        "Nutrisi AB Mix" to ""
     )
 
     Column {
@@ -229,7 +222,7 @@ fun ToolsSection() {
 }
 
 @Composable
-fun TutorialSection() {
+fun TutorialSection(onTutorialClick: () -> Unit) {
     Column {
         Text(
             text = "Tutorial Menanam",
@@ -243,14 +236,14 @@ fun TutorialSection() {
             shape = RoundedCornerShape(12.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onTutorialClick() }
         ) {
             Column {
                 Box(contentAlignment = Alignment.Center) {
-                    // --- BAGIAN YANG DIPERBAIKI ---
-                    // Ganti thumbnail error dengan warna abu-abu gelap
                     Image(
-                        painter = ColorPainter(Color.DarkGray),
+                        painter = painterResource(R.drawable.menanam_selada_hidroponik),
                         contentDescription = "Tutorial Thumbnail",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
@@ -258,7 +251,6 @@ fun TutorialSection() {
                             .height(180.dp)
                     )
 
-                    // Tombol Play
                     Box(
                         modifier = Modifier
                             .size(48.dp)
@@ -286,29 +278,32 @@ fun TutorialSection() {
 
 @Composable
 fun BottomFloatingButton() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp)
+    Surface(
+        color = Color.White.copy(alpha = 0.95f),
+        modifier = Modifier.fillMaxWidth()
     ) {
-        Button(
-            onClick = { /* Action */ },
-            colors = ButtonDefaults.buttonColors(containerColor = PrimaryGreen),
-            shape = RoundedCornerShape(12.dp),
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
+                .padding(horizontal = 24.dp, vertical = 16.dp)
         ) {
-            Text(
-                text = "Mulai Tanam dan Pantau",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color.White
-            )
+            Button(
+                onClick = { /* Action Tanam */ },
+                colors = ButtonDefaults.buttonColors(containerColor = PrimaryGreen),
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                Text(
+                    text = "Mulai Tanam dan Pantau",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White
+                )
+            }
         }
     }
 }
-
 
 class BottomArcShape : Shape {
     override fun createOutline(
@@ -319,10 +314,10 @@ class BottomArcShape : Shape {
         return androidx.compose.ui.graphics.Outline.Generic(
             path = Path().apply {
                 moveTo(0f, 0f)
-                lineTo(0f, size.height - 40f) // Mulai lengkungan sedikit sebelum bawah
+                lineTo(0f, size.height - 40f)
                 quadraticBezierTo(
-                    size.width / 2, size.height + 40f, // Titik kontrol lengkungan (bawah tengah)
-                    size.width, size.height - 40f      // Titik akhir lengkungan
+                    size.width / 2, size.height + 40f,
+                    size.width, size.height - 40f
                 )
                 lineTo(size.width, 0f)
                 close()

@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "hydropome"
+rootProject.name = "app.motion.android"
 include(":app")
  

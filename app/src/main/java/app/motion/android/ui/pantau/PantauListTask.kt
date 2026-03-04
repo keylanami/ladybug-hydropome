@@ -243,7 +243,6 @@ fun PlantItem(name: String, difficulty: String, day: String, isHard: Boolean) {
             )
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Tag Kesulitan
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(
                     modifier = Modifier
@@ -260,13 +259,9 @@ fun PlantItem(name: String, difficulty: String, day: String, isHard: Boolean) {
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Tag Hari (Pake Icon Daun kecil)
-            // Di dalam PlantItem...
-            // Tag Hari
             Row(verticalAlignment = Alignment.CenterVertically) {
-                // GANTI DI SINI
                 Icon(
-                    imageVector = Icons.Default.DateRange, // Icon Kalender (pengganti Daun)
+                    imageVector = Icons.Default.DateRange,
                     contentDescription = null,
                     tint = Color.Gray,
                     modifier = Modifier.size(12.dp)

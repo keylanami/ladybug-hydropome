@@ -1,6 +1,5 @@
 package app.motion.android.ui.dashboard
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import app.motion.android.ui.dashboard.components.FlashSale
 import app.motion.android.ui.dashboard.components.GreetingSection
+import app.motion.android.ui.dashboard.components.HydropomeBottomNav
 import app.motion.android.ui.dashboard.components.ProgressCard
 import app.motion.android.ui.dashboard.components.RecommendationSection
 import app.motion.android.ui.dashboard.components.SearchBar
@@ -24,34 +25,43 @@ import app.motion.android.ui.dashboard.components.SearchBar
 @Composable
 @Preview
 fun dashboardScreen(){
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFF7F7F7))
-            .verticalScroll(rememberScrollState())
-    ) {
+    // Gunakan Scaffold untuk memisahkan konten yang bisa di-scroll dengan Navbar yang diam
+    Scaffold(
+        bottomBar = { HydropomeBottomNav() },
+        containerColor = Color(0xFFF7F7F7) // Pindahkan background color ke sini
+    ) { paddingValues ->
 
-        GreetingSection()
+        // Area konten yang bisa di-scroll
         Column(
             modifier = Modifier
-                .offset(y = (-72).dp)
+                .fillMaxSize()
+                .padding(paddingValues) // PENTING: Agar konten terbawah tidak tertutup navbar
+                .verticalScroll(rememberScrollState())
         ) {
 
-            Box(modifier = Modifier.padding(horizontal = 20.dp)) {
-                ProgressCard()
+            GreetingSection()
+
+            Column(
+                modifier = Modifier
+                    .offset(y = (-72).dp)
+            ) {
+
+                Box(modifier = Modifier.padding(horizontal = 20.dp)) {
+                    ProgressCard()
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                SearchBar()
+                Spacer(modifier = Modifier.height(20.dp))
+
+                RecommendationSection()
+                Spacer(modifier = Modifier.height(24.dp))
+
+                FlashSale()
+
+                Spacer(modifier = Modifier.height(20.dp))
             }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-
-            SearchBar()
-            Spacer(modifier = Modifier.height(20.dp))
-
-            RecommendationSection()
-            Spacer(modifier = Modifier.height(24.dp))
-
-            FlashSale()
-            Spacer(modifier = Modifier.height(50.dp))
         }
     }
 }

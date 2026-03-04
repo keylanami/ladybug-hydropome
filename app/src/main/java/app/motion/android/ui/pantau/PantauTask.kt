@@ -45,7 +45,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -55,21 +54,22 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.motion.android.R
+import app.motion.android.ui.theme.PlusJakarta
 
 // --- WARNA ---
 val PrimaryGreen = Color(0xFF4E9F80)
 val TextBlack = Color(0xFF1E1E1E)
 val TextGray = Color(0xFF888888)
 val LightGreenBg = Color(0xFFE8F5E9)
-val OrangeProgress = Color(0xFFFFB74D) // Warna Orange Progress & Banner
-val OrangeBg = Color(0xFFF79E45) // Warna Background Banner
+val OrangeProgress = Color(0xFFFFB74D)
+val OrangeBg = Color(0xFFF79E45)
 
 @Composable
 fun PlantTaskScreen() {
     Scaffold(
         topBar = { TaskTopBar() },
         containerColor = Color.White,
-        bottomBar = { BottomActionButtons() } // Tombol Selesai & Panduan fixed di bawah
+        bottomBar = { BottomActionButtons() }
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -77,43 +77,36 @@ fun PlantTaskScreen() {
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
         ) {
-            // 1. Gambar Header Melengkung
             TaskHeaderImage()
 
             Column(modifier = Modifier.padding(horizontal = 24.dp)) {
-                // 2. Judul & Info
+
                 PlantInfoSection()
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // 3. Card Progress
                 ProgressCard()
 
                 Spacer(modifier = Modifier.height(20.dp))
             }
 
-            // 4. Selector Hari (Scroll Samping)
             DaySelectorSection()
 
             Column(modifier = Modifier.padding(horizontal = 24.dp)) {
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // 5. Checklist Tugas & Tips
                 TaskChecklistCard()
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // 6. Banner Marketplace
                 MarketplaceBanner()
 
-                // Spacer agar konten tidak tertutup bottom bar
                 Spacer(modifier = Modifier.height(20.dp))
             }
         }
     }
 }
 
-// --- COMPONENTS ---
 
 @Composable
 fun TaskTopBar() {
@@ -183,9 +176,8 @@ fun PlantInfoSection() {
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Tag Hari
             Icon(
-                imageVector = Icons.Default.DateRange, // Placeholder Icon Daun
+                imageVector = Icons.Default.DateRange,
                 contentDescription = null,
                 tint = TextBlack,
                 modifier = Modifier.size(16.dp)
@@ -201,7 +193,7 @@ fun ProgressCard() {
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier
-            .fillMaxWidth(), // Padding horizontal dipindah ke parent (Screen) biar rapi
+            .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
@@ -217,39 +209,35 @@ fun ProgressCard() {
                     .weight(1f)
                     .padding(start = 20.dp, top = 20.dp, bottom = 20.dp)
             ) {
-                // Judul
                 Text(
                     text = "Progres Menanam",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
-                        // fontFamily = PlusJakarta // Uncomment jika font sudah ada
+                         fontFamily = PlusJakarta
                     ),
                     color = TextBlack
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                // Subtitle
                 Text(
                     text = "Ayo mulai menanam!",
-                    style = MaterialTheme.typography.bodyMedium, // Default font
+                    style = MaterialTheme.typography.bodyMedium,
                     color = Color.Gray,
                     fontSize = 12.sp
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // --- PROGRESS BAR ---
-                // Progress Bar Manual (Sesuai desain task)
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(0.9f) // Biar tidak mentok kanan
+                        .fillMaxWidth(0.9f)
                         .height(8.dp)
                         .background(Color(0xFFFFE0B2), RoundedCornerShape(10.dp))
                 ) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(0.1f) // 10% progress
+                            .fillMaxWidth(0.1f)
                             .fillMaxHeight()
                             .background(OrangeProgress, RoundedCornerShape(10.dp))
                     )
@@ -265,8 +253,6 @@ fun ProgressCard() {
                 )
             }
 
-            // Gambar Daun di Kanan Bawah
-            // Menggunakan Icon sementara agar tidak error, ganti dengan R.drawable.daun nanti
 
             Image(
                 painter = painterResource(id = R.drawable.daun),
@@ -290,13 +276,13 @@ fun DaySelectorSection() {
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         itemsIndexed(days) { index, day ->
-            val isSelected = index == 0 // Hari pertama selected
+            val isSelected = index == 0
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier
-                    .size(50.dp) // Ukuran lingkaran
+                    .size(50.dp)
                     .background(
                         color = if (isSelected) PrimaryGreen else LightGreenBg,
                         shape = CircleShape
@@ -323,12 +309,11 @@ fun DaySelectorSection() {
 fun TaskChecklistCard() {
     Card(
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp), // Shadow tipis
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier.fillMaxWidth().border(1.dp, Color(0xFFEEEEEE), RoundedCornerShape(16.dp))
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            // Header Tugas
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(Icons.Default.LocationOn, contentDescription = null, tint = Color.Red, modifier = Modifier.size(16.dp)) // Placeholder Pin
                 Spacer(modifier = Modifier.width(8.dp))
@@ -337,7 +322,6 @@ fun TaskChecklistCard() {
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Checkbox Items
             TaskCheckboxItem("Siapkan Nutrisi & Air", true)
             TaskCheckboxItem("Rendam Rockwool", false)
             TaskCheckboxItem("Tanam Benih Selada", false)
@@ -345,7 +329,6 @@ fun TaskChecklistCard() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Tips Section
             Row(verticalAlignment = Alignment.Top) {
                 Icon(Icons.Default.Star, contentDescription = null, tint = PrimaryGreen, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(8.dp))
@@ -364,7 +347,6 @@ fun TaskCheckboxItem(text: String, isChecked: Boolean) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(vertical = 6.dp)
     ) {
-        // Custom Checkbox biar mirip desain (Kotak Hijau/Putih)
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
@@ -410,9 +392,8 @@ fun MarketplaceBanner() {
                 }
             }
 
-            // Placeholder Image Produk
             Image(
-                painter = ColorPainter(Color.White), // Ganti Gambar Kit Hidroponik
+                painter = painterResource(R.drawable.banner_iklan_marketplace),
                 contentDescription = "Produk",
                 modifier = Modifier
                     .size(80.dp)
@@ -457,8 +438,6 @@ fun BottomActionButtons() {
     }
 }
 
-// Custom Shape untuk lengkungan gambar header
-// Custom Shape untuk lengkungan gambar header
 class BottomCurveShape : Shape {
     override fun createOutline(
         size: androidx.compose.ui.geometry.Size,
@@ -469,9 +448,6 @@ class BottomCurveShape : Shape {
             path = Path().apply {
                 moveTo(0f, 0f)
                 lineTo(0f, size.height - 30f)
-
-                // PERBAIKAN DI SINI:
-                // Ganti quadraticBezierTo -> quadraticTo
                 quadraticTo(
                     size.width / 2, size.height + 30f,
                     size.width, size.height - 30f
